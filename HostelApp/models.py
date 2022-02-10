@@ -7,6 +7,7 @@ from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class User (AbstractUser):
+    USERNAME_FIELD = 'username'
     is_matron = models.BooleanField('matron status',default = False) 
     is_student = models.BooleanField('student status',default = False) 
     first_name = models.CharField(max_length=30)
