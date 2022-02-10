@@ -24,6 +24,7 @@ class matron_signup(UserCreationForm):
             matron.email_address = self.cleaned_data.get('email_address')
             matron.phone_number = self.cleaned_data.get('phone_number')
             matron.profile_pic = self.cleaned_data.get('profile_pic')
+
             return matron
         
 
@@ -52,3 +53,15 @@ class student_signup(UserCreationForm):
         student.profile_pic = self.cleaned_data.get('profile_pic')
 
         return student
+
+class login_form(forms.Form):
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={"class":"form-control"}
+        )
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={"class":"form-control"}
+        )
+    )
