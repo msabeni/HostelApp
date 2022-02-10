@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {%load bootstrap3%} {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div
+      class="container"
+      style="
+        margin-top: 0.2%;
+        color: black;
+        margin-left: 35%;
+        width: max-content;
+        border-style: ridge;
+        box-shadow: 0 3px 10px rgb(0 0 0/1);
+      "
+    >
+      <br />
+      <form method="POST" accept-charset="utf-8">
+        {% csrf_token %} {% bootstrap_form form %}
+        <button
+          type="submit"
+          style="background-color: darkolivegreen; font-size: 1.2em"
+          class="btn btn-sm btn-info"
+        >
+          Sign Up
+        </button>
+      </form>
+      Have an account? <br />
+      <a class="nav-link" style="color: darkolivegreen" href="#">Login Here</a>
+    </div>
+  </body>
+</html>
+{%endblock%}
