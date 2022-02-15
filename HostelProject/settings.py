@@ -25,8 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
-
+SECRET_KEY = 'django-insecure-7(9c&0fk7b6fonx%&1v!+n8ge93gj4zcnd*()c4fc(=!$@cx'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -85,19 +84,20 @@ WSGI_APPLICATION = 'HostelProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'PASSWORD' : config('DB_PASSWORD'),
-        'USER' : config('DB_USER'),
-        'HOST' : config('DB_HOST'),
+        'NAME':'hostel',
+        'PASSWORD':'4543',
+        'USER':'postgres',
+        'HOST':'localhost',
+        'PORT':'5433'
     }
 }
 
 #Cloudinary
 #Configuring cloudinary
 cloudinary.config(
-    cloud_name = config('CD_NAME'),
-    api_key= config('CD_API_KEY'),
-    api_secret=config('CD_API_SECRET'),
+    cloud_name = 'maryann',
+    api_key= '277915962245612',
+    api_secret= 'WE5W32SCq7AAokLBwMDNu9PCxA4',
 )
 
 # Password validation
