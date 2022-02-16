@@ -1,9 +1,11 @@
-from re import template
 from django.shortcuts import redirect, render 
-from .models import *
+from django.urls import reverse_lazy
+from HostelApp.models  import *
 from django.views.generic import CreateView 
-from .forms import *
+from HostelApp.forms  import *
 from django.contrib.auth import authenticate,login
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 def index (request):
@@ -52,3 +54,24 @@ def login_view(request):
         login(request, user)
         return redirect('/')
   return render (request, 'login.html',{'form':form})
+
+@login_required
+def profile(request):
+    current_user = request.user
+    profile = Profile.objects.filter(user_id=current_user.id).first()
+    return render(request, "profile.html", {"profile": profile})
+
+@login_required
+def update_profile(request,id):
+    user = User.objects.get(id=id)
+    profile = Profile.objects.get(user_id = user)
+    edit_form = edit_profile(instance=profile)
+    if request.method == "POST":
+            edit_form = edit_profile(request.POST,request.FILES,instance=profile)
+            if edit_form.is_valid():  
+                
+                profile = edit_form.save(commit=False)
+                profile.save()
+                return redirect('profile') 
+            
+    return render(request, 'edit_profile.html', {"edit_form":edit_form, 'profile':profile})

@@ -1,8 +1,10 @@
 from django import forms
 from django.db import transaction
-from .models import *
 from django.forms import ModelForm
+from .models import *
 from django.contrib.auth.forms import UserCreationForm 
+from cloudinary.models import CloudinaryField
+
 
 class matron_signup(UserCreationForm):
     first_name = forms.CharField(required=True)
@@ -65,3 +67,9 @@ class login_form(forms.Form):
             attrs={"class":"form-control"}
         )
     )
+
+class edit_profile(forms.ModelForm):
+    class Meta:
+        model = Profile
+        exclude = ['user','date']
+
