@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render 
+from django.shortcuts import redirect, render , get_object_or_404
 from django.urls import reverse_lazy
 from HostelApp.models  import *
 from django.views.generic import CreateView 
@@ -75,3 +75,23 @@ def update_profile(request,id):
                 return redirect('profile') 
             
     return render(request, 'edit_profile.html', {"edit_form":edit_form, 'profile':profile})
+
+@login_required
+def list_rooms(request):
+    rooms = Room.objects.all()
+    return render(request,"rooms.html", {"rooms":rooms})
+
+@login_required
+def book_room(request, id):
+    room = Room.objects.get(id = id)
+    current_user = request.user
+    current_user.profile.room = room
+    current_user.profile.save()
+    return redirect('/room')
+
+@login_required
+def leave_room(request, id):
+    room = get_object_or_404(Room, id=id)
+    request.user.profile.room = None
+    request.user.profile.save()
+    return redirect('/room')

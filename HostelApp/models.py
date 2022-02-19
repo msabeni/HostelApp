@@ -76,4 +76,9 @@ class Profile (models.Model) :
                 profile = Profile(user=user)
                 profile.save()
 
-
+class Room (models.Model) :
+    user = models.ForeignKey(Student, on_delete=models.CASCADE, null=True)
+    room_no = models.CharField(max_length=10)
+    
+    def __str__(self):
+        return self.room_no
