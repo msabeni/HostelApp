@@ -1,4 +1,3 @@
-from email.policy import default
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.dispatch import receiver
@@ -53,6 +52,25 @@ class Student (models.Model) :
     def delete_student (self) :
         self.delete()
 
+class Room (models.Model) :
+    occupant = models.ForeignKey('Student', on_delete=models.CASCADE, null=True)
+    room_no = models.CharField(max_length=10)
+    
+    def __str__(self):
+        return self.room_no
+    def create_room(self):
+        self.save()
+
+    def update_room(self):
+        self.save()
+
+    def delete_room(self):
+        self.delete()
+
+    def find_room(cls,room_id):
+        room = cls.objects.filter(room_id=room_id)
+        return room
+
 class Profile (models.Model) :
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile', null=True)
     profile_pic = CloudinaryField ('image')
@@ -60,6 +78,7 @@ class Profile (models.Model) :
     phone_number = models.CharField(max_length= 13)
     bio = models.TextField(max_length=50)
     date = models.DateTimeField(auto_now_add=True)
+    room = models.ForeignKey(Room, on_delete=models.SET_NULL, null=True, related_name='room_owner', blank=True)
 
     def __str__(self):
         return f'{self.user} profile'
@@ -76,9 +95,3 @@ class Profile (models.Model) :
                 profile = Profile(user=user)
                 profile.save()
 
-class Room (models.Model) :
-    user = models.ForeignKey(Student, on_delete=models.CASCADE, null=True)
-    room_no = models.CharField(max_length=10)
-    
-    def __str__(self):
-        return self.room_no
