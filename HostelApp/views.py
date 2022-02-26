@@ -5,7 +5,7 @@ from django.views.generic import CreateView
 from HostelApp.forms  import *
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required
-
+from django.contrib import auth
 
 # Create your views here.
 def index (request):
@@ -25,7 +25,7 @@ class matron_signup_view (CreateView):
 
     def form_valid(self, form):
         user = form.save()
-        return redirect('/')
+        return redirect('/login')
 
 class student_signup_view(CreateView):
     model = User
@@ -38,7 +38,7 @@ class student_signup_view(CreateView):
 
     def form_valid(self, form):
         user = form.save()
-        return redirect('/')
+        return redirect('/login')
 
 def login_view(request):
   form = login_form(request.POST or None)
@@ -72,9 +72,13 @@ def update_profile(request,id):
                 
                 profile = edit_form.save(commit=False)
                 profile.save()
-                return redirect('profile') 
-            
+                return redirect('profile')           
     return render(request, 'edit_profile.html', {"edit_form":edit_form, 'profile':profile})
+
+@login_required
+def logout(request):
+    auth.logout(request)
+    return redirect ('/')
 
 @login_required
 def list_rooms(request):
@@ -95,3 +99,6 @@ def leave_room(request, id):
     request.user.profile.room = None
     request.user.profile.save()
     return redirect('/room')
+
+
+

@@ -1,6 +1,15 @@
-<div class="container-fluid back" style="font-family:'Playfair Display', serif;font-weight: 900; height:27.8em;padding-bottom:0.5%; background-image:url('/static/images/home.jpeg') ; background-repeat: no-repeat;background-size: cover;">
-    <div class="text" style="color:black;">
-        <h1 style="padding-top: 200px; letter-spacing: 6px; text-align: center;">Hi There, <br> Welcome  To <br> <span style="color:darkolivegreen "><strong>CERTIFY</strong></span></h1>
-        <h5 style="text-align: center;align-items: center;">Store your credentials with us!</h5>
+{% extends 'base.html'%}
+{% block content%}
+<div class="container">
+    <div class="row">
+        <div class="col-md-5" style ="color:rgb(212, 212, 29);margin-top:5%;margin-left: 15%;font-size: 2em;">
+            <p><span style="margin-left:-0.5em;font-size: 2em;text-shadow:5em;">WELCOME</span><br><br><span style="margin-left:19%">To</span><br><br> TEAU HOSTELZ</p>
+            <button input type="submit" class="btn btn-warning btn-sm mr-4">BOOK NOW</button>
+  
+        </div>
+        <div class="col-md-4">
+            <br><br><img src="https://media.istockphoto.com/photos/view-of-the-kitchen-and-bar-in-a-small-hotel-room-studio-picture-id1161162417?b=1&k=20&m=1161162417&s=170667a&w=0&h=GwgiFuACNyyO-clLOi16INVaiQG9Pl-IGbkCHdDvUtM=">
+        </div>
     </div>
 </div>
+{% endblock %}

@@ -1,7 +1,7 @@
 {% extends "base.html" %} {% block content %} {%for room in rooms%}
 <p>{{room.room_no}}</p>
 {% if request.user.profile.room == room %}
-<a href="{% url 'leave_room' room.id %}">Leave Room</a>
+<a href="{% url 'leave_room' room.id %}">Checkout</a>
 {% elif not request.user.profile.room%}
 <a href="{% url 'book_room' room.id %}">Book Room</a>
 {%endif%} {%endfor%} {%endblock%}

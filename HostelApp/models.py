@@ -54,7 +54,9 @@ class Student (models.Model) :
 
 class Room (models.Model) :
     occupant = models.ForeignKey('Student', on_delete=models.CASCADE, null=True)
+    in_charge = models.ForeignKey('Matron',on_delete=models.CASCADE,null=True)
     room_no = models.CharField(max_length=10)
+    status = models.BooleanField(null=True)
     
     def __str__(self):
         return self.room_no
