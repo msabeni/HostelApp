@@ -1,0 +1,121 @@
+
+{% load bootstrap3 %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>teau hostelz</title>
+    {% endif %}
+    {% block styles %}
+      {% bootstrap_css %}
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+      <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  {% endblock %}
+
+  </head>
+  <body>
+    {% include "navbar.html" %}
+    {% block content %} 
+    {%endblock%}
+     <!-- Footer -->
+    <br><br> <footer style="background-color:darkolivegreen; text-decoration:none;" class="page-footer font-small unique-color-dark">
+      <!-- Social buttons -->
+      <div class="primary-color">
+          <div class="container">
+              <!--Grid row-->
+              <div class="row py-4 d-flex align-items-center">
+                  <div class="col-md-6 col-lg-7 text-center text-md-right">
+                      <!--Facebook-->
+                      <a class="fb-ic ml-0">
+                          <i class="fab fa-facebook text-dark mr-4"> </i>
+                      </a>
+                      <!--Twitter-->
+                      <a class="tw-ic">
+                          <i class="fab fa-twitter text-dark mr-4"> </i>
+                      </a>
+                      <!--Google +-->
+                      <a class="gplus-ic">
+                          <i class="fab fa-google-plus text-dark mr-4"> </i>
+                      </a>
+                      <!--Linkedin-->
+                      <a class="li-ic">
+                          <i class="fab fa-linkedin text-dark mr-4"> </i>
+                      </a>
+                      <!--Instagram-->
+                      <a class="ins-ic">
+                          <i class="fab fa-instagram text-dark mr-lg-4"> </i>
+                      </a>
+                  </div>
+                  <!--Grid column-->
+              </div>
+              <!--Grid row-->
+          </div>
+      </div>
+      <!-- Social buttons -->
+      <!--Footer Links-->
+      <div class="container mt-5 mb-4 text-center text-md-left">
+          <div class="row mt-3">
+              <!--First column-->
+              <div class="col-md-3 col-lg-4 col-xl-3 mb-4">
+                  
+              </div>
+              <!--/.First column-->
+              <!--second column-->
+              <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                  <h6 class="text-uppercase font-weight-bold">
+                      <strong>Useful links</strong>
+                  </h6>
+                  <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                  <p>
+                      <a style="color:black" href="#!">Your Account</a>
+                  </p>
+                  <p>
+                      <a style="color:black" href="#!">Register</a>
+                  </p>
+                  <p>
+                      <a style="color:black" href="#!">Login</a>
+                  </p>
+                  <p>
+                      <a style="color:black" href="#!">Help</a>
+                  </p>
+              </div>
+              <!--/.second column-->
+              <!--Fourth column-->
+              <div class="col-md-4 col-lg-3 col-xl-3">
+                  <h6 class="text-uppercase font-weight-bold">
+                      <strong>Contact</strong>
+                  </h6>
+                  <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+                  <p>
+                      <i class="fas fa-home "></i> Kitengela,Nairobi,KENYA</p>
+                  <p>
+                      <i class="fa fa-envelope mr-3"></i>teau@gmail.com</p>
+                  <p>
+                      <i class="fa fa-phone mr-3"></i> + 25485627952</p>
+                  <p>
+                      <i class="fa fa-print mr-3"></i> + 0116404262</p>
+              </div>
+              <!--/.Fourth column-->
+          </div>
+      </div>
+      <!--/.Footer Links-->
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3">© 2022 Copyright:
+      <!-- Copyright -->
+          <a style="color:black" href="https://github.com/DannyMyles"> teau.com</a>
+      </div>
+      <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+
+    {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     {% bootstrap_javascript %}
+    {% endblock %}
+</body>
+</html>
