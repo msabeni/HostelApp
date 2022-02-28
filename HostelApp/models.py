@@ -55,7 +55,7 @@ class Student (models.Model) :
 class Room (models.Model) :
     occupant = models.ForeignKey('Student', on_delete=models.CASCADE, null=True)
     in_charge = models.ForeignKey('Matron',on_delete=models.CASCADE,null=True)
-    room_no = models.CharField(max_length=10)
+    room_no = models.CharField(max_length=5)
     status = models.BooleanField(null=True)
     
     def __str__(self):
@@ -74,12 +74,17 @@ class Room (models.Model) :
         return room
 
 class Profile (models.Model) :
+    GENDER_CHOICES = (
+        (u'Male', u'Male'),
+        (u'Female', u'Female'),
+    )
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile', null=True)
     profile_pic = CloudinaryField ('image')
     email = models.EmailField(blank=True)
     phone_number = models.CharField(max_length= 13)
     bio = models.TextField(max_length=50)
     date = models.DateTimeField(auto_now_add=True)
+    gender = models.CharField(null=True,max_length=15, choices=GENDER_CHOICES)
     room = models.ForeignKey(Room, on_delete=models.SET_NULL, null=True, related_name='room_owner', blank=True)
 
     def __str__(self):

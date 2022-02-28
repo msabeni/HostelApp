@@ -37,6 +37,7 @@ class student_signup(UserCreationForm):
     registration_no = forms.CharField(required=True)
     phone_number = forms.CharField(required=True)
     profile_pic = CloudinaryField()
+    gender = forms.CharField(required=True)
 
     class Meta(UserCreationForm.Meta):
         model = User
@@ -53,6 +54,7 @@ class student_signup(UserCreationForm):
         student.email = self.cleaned_data.get('email')
         student.phone_number = self.cleaned_data.get('phone_number')
         student.profile_pic = self.cleaned_data.get('profile_pic')
+        student.gender = self.cleaned_data.get('gender')
 
         return student
 
@@ -71,5 +73,5 @@ class login_form(forms.Form):
 class edit_profile(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ['user','date']
+        exclude = ['user','date','room']
 

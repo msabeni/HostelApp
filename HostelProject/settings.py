@@ -88,7 +88,6 @@ DATABASES = {
         'PASSWORD':'4543',
         'USER':'postgres',
         'HOST':'localhost',
-        'PORT':'5433'
     }
 }
 
@@ -99,6 +98,9 @@ cloudinary.config(
     api_key= '277915962245612',
     api_secret= 'WE5W32SCq7AAokLBwMDNu9PCxA4',
 )
+
+FLW_PRODUCTION_PUBLIC_KEY = "05eceee68a9020a23977708e2a05da5d-X"
+FLW_PRODUCTION_SECRET_KEY = "d32871d4b5a8cc3eed4229f0215c017a-X"
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
