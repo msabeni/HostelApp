@@ -53,10 +53,14 @@ class Student (models.Model) :
         self.delete()
 
 class Room (models.Model) :
-    occupant = models.ForeignKey('Student', on_delete=models.CASCADE, null=True)
-    in_charge = models.ForeignKey('Matron',on_delete=models.CASCADE,null=True)
+    STATUS_CHOICES = (
+        (u'Booked', u'Booked'),
+        (u'Available', u'Available'),
+    )
+    occupant = models.ForeignKey('Student', on_delete=models.CASCADE, null=True,blank=True)
+    in_charge = models.ForeignKey('Matron',on_delete=models.CASCADE,null=True,blank=True)
     room_no = models.CharField(max_length=5)
-    status = models.BooleanField(null=True)
+    status = models.CharField(max_length=20,null=True,choices=STATUS_CHOICES,blank=True)
     
     def __str__(self):
         return self.room_no

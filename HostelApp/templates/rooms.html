@@ -1,7 +1,28 @@
-{% extends "base.html" %} {% block content %} {%for room in rooms%}
-<p>{{room.room_no}}</p>
-{% if request.user.profile.room == room %}
-<a href="{% url 'leave_room' room.id %}">Checkout</a>
-{% elif not request.user.profile.room%}
-<a href="{% url 'book_room' room.id %}">Book Room</a>
-{%endif%} {%endfor%} {%endblock%}
+{% extends "base.html" %}
+{% block content %} 
+<div class="container-fluid">
+    <h2 align="center"><u>Rooms Available</u></h2>
+    <div id="rates">
+      {% if rooms %}
+      <div class="titles">
+          <p class="title">Room Number</p>
+          <p class=""></p>
+      </div>
+      {% for room in rooms %}
+      <div class="details">
+          <p class="name">{{room.room_no}}</p>
+          <p class="content">
+            {% if request.user.profile.room == room %}
+            <a href="{% url 'leave_room' room.id %}">Checkout</a>
+            {% elif not request.user.profile.room%}
+            <a href="{% url 'book_room' room.id %}">Book Room</a>
+            {% endif %}
+          </p>
+      </div>
+      {% endfor %}
+      {% else %}
+      <div class="alert alert-secondary">No Rooms Yet</div>
+      {% endif %}
+  </div>
+  </div>
+{% endblock %}  
