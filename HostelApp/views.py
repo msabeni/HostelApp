@@ -5,7 +5,7 @@ from HostelApp.forms  import *
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required
 from django.contrib import auth
-
+from .permissions import *
 # Create your views here.
 def index (request):
     return render(request,'index.html')
@@ -91,6 +91,8 @@ def book_room(request, id):
     current_user.profile.room = room
     current_user.profile.save()
     return redirect('/room')
+# permission_classes= (IsReadOnly,)
+
 
 @login_required
 def leave_room(request, id):
