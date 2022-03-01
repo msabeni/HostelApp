@@ -15,6 +15,8 @@ from decouple import config
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api 
+import django_heroku
+import dj_database_url
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -45,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'HostelApp',
     'bootstrap3',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -55,6 +58,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
 ]
 
 ROOT_URLCONF = 'HostelProject.urls'
@@ -98,6 +103,9 @@ cloudinary.config(
     api_key= '277915962245612',
     api_secret= 'WE5W32SCq7AAokLBwMDNu9PCxA4',
 )
+
+# Configure Django App for Heroku.
+django_heroku.settings(locals())
 
 FLW_PRODUCTION_PUBLIC_KEY = "05eceee68a9020a23977708e2a05da5d-X"
 FLW_PRODUCTION_SECRET_KEY = "d32871d4b5a8cc3eed4229f0215c017a-X"
