@@ -59,6 +59,7 @@ class Room (models.Model) :
     )
     occupant = models.ForeignKey('Student', on_delete=models.CASCADE, null=True,blank=True)
     in_charge = models.ForeignKey('Matron',on_delete=models.CASCADE,null=True,blank=True)
+    room_image = CloudinaryField('room_image',null=True)
     room_no = models.CharField(max_length=5)
     status = models.CharField(max_length=20,null=True,choices=STATUS_CHOICES,blank=True)
     

@@ -1,36 +1,26 @@
 {% extends "base.html" %}
 {% block content %} 
-<div class="container-fluid">
-    <h2 align="center"><u>Rooms Available</u></h2>
+<div class="container">
+    <h2 align="center"><u>Rooms Available</u></h2><br>
     <div class="row">
-        <div class="col-md-6">
-            <div id="rates">
-                {% if rooms %}
-                <div class="titles">
-                    <p class="title">Room Number</p>
-                    <p class=""></p>
-                </div>
-                {% for room in rooms %}
-                <div class="details">
-                    <p class="name">{{room.room_no}}</p>
-                    <p class="content">
-                      {% if request.user.profile.room == room %}
-                      <a href="{% url 'leave_room' room.id %}">Checkout</a>
-                      {% elif not request.user.profile.room%}
-                      <a href="{% url 'book_room' room.id %}">Book Room</a>
-                      {% endif %}
-                    </p>
-                </div>
-                {% endfor %}
-                {% else %}
-                <div class="alert alert-secondary">No Rooms Yet</div>
+        {% for room in rooms %}
+        <div class="col-sm-6">
+          <div class="card" style="border-style: groove;border-color: darkolivegreen;border-width: 2em;">
+            <div class="card-body">
+              <h5 class="card-title"align="center"><img  height="300em" src="{{room.room_image.url}}"></h5>
+              <p class="card-text" align="center">{{room.room_no}}</p>
+              <p class="card-text" align="center">Price: Kshs. 12,000</p>
+            </div>
+            <p class="card-footer" align="center">
+                {% if request.user.profile.room == room %}
+                <a class="btn btn-warning" href="{% url 'leave_room' room.id %}">Checkout</a>
+                {% elif not request.user.profile.room%}
+                <a class="btn btn-warning" href="{% url 'book_room' room.id %}">Book Room</a>
                 {% endif %}
-              </div>
+            </p>
+          </div><br>
         </div>
-        <div class="col-md-6">
-            <img  height="300em" src="https://images.unsplash.com/photo-1485979495779-d48eb014ae88?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MjB8fHxlbnwwfHx8fA%3D%3D&w=1000&q=80"><br><br><br>
-            <img  height="300em" src="https://images.unsplash.com/photo-1486304873000-235643847519?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80">
-        </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}  
