@@ -7,7 +7,7 @@
             <div class="col-md-4">
                 <div class="card">
                     {% if profile.profile_pic %}
-                    <img style ="margin-left: 20%;" src="{{profile.profile_pic.url}}" alt="" height="300em" width="250em" class="card-img-top">
+                    <img style ="margin-left: 20%;" src="{{profile.profile_pic.url}}" alt="" height="350em" width="400em" class="card-img-top">
                     {%else%}
                     <img style ="margin-left: 20%;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3aV6aq2LNho3SY8cDICGVEdRweW5u9IaZ_w&usqp=CAU"
                         class="card-img-top" alt="My profile picture">
@@ -24,7 +24,15 @@
                         <span class="text-danger">No about me</span>
                         {% endif %}
                     </p>
-                    <p>Gender: <small>{{ profile.gender }}</small></p>
+                    <p>Gender:{{ profile.gender }}</p>
+                    <p>
+                        {% if profile.room %}
+                        Room Occupied: {{ profile.room}}
+                        {% else %}
+                        <span class="text-danger">You have not booked any room!</span><br>
+                        <a class="btn btn-warning btn-sm mr-4" href="/room">BOOK NOW</a>
+                        {% endif %}
+                    </p>
                     <h6>Joined on: <span class="badge rounded-pill bg-secondary text-white">
                             {{ user.date_joined }} </span></h6><br>
                     {% if request.user is user %}  
