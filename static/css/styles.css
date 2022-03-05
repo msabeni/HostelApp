@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-content: center;
-    padding: 0 10%;
+    padding: 0 5%;
   }
   .details, .titles{
     display: flex;
@@ -11,9 +11,9 @@
     justify-content: space-between;
     align-content: center;
     padding-bottom: 3rem;
-    margin-right: 40%;
+    margin-right: 70%;
   }
   .title{
     font-size:1.4em ;
-    margin-left: -2em;
+    margin-left: 1em;
   }

@@ -14,6 +14,7 @@ urlpatterns = [
     path('book_room/<int:id>', views.book_room, name='book_room'),
     path('leave_room/<int:id>', views.leave_room, name='leave_room'),
     # path('rooms',views.matron_view , name="rooms"),
-    path('get_notified/<int:id>',views.notification,name='notifications')
+    path('get_notified/<int:id>',views.notification,name='notifications'),
+    path('waiting_list',views.waiting_list,name='waiting_list')
 
 ]

@@ -104,14 +104,20 @@ def leave_room(request, id):
 @login_required
 def notification(request,id):
     user = User.objects.get(id=id)
-    form = notification_form(request.POST)
+    notification = Notification.objects.all()
+    form = notification_form(instance=user)
     if request.method == "POST":
+            form = notification_form(request.POST)
             if form.is_valid():  
                 notification = form.save(commit=False)
                 notification.save()
-                return redirect('/')      
-    return render(request, 'notifications.html', {"form":form})
+                return redirect('/waiting_list')      
+    return render(request, 'notification_form.html', {"form":form,"notification":notification})
 
+@login_required
+def waiting_list(request):
+    waiting_list = Notification.objects.all()
+    return render(request, "waiting_list.html", {"waiting_list":waiting_list})
 
 # @login_required
 # def matron_view(request):
