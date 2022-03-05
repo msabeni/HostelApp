@@ -75,3 +75,16 @@ class edit_profile(forms.ModelForm):
         model = Profile
         exclude = ['user','date','room']
 
+class notification_form(forms.Form):
+    email = forms.CharField(
+        widget=forms.TextInput(
+            attrs={"class":"form-control"}
+        )
+    )
+    phone_number = forms.CharField(
+        widget=forms.TextInput(
+            attrs={"class":"form-control"}
+        )
+    )
+
+

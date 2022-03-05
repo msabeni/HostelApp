@@ -1,4 +1,5 @@
 from django.shortcuts import redirect, render , get_object_or_404
+from django.views import View
 from HostelApp.models  import *
 from django.views.generic import CreateView 
 from HostelApp.forms  import *
@@ -55,6 +56,11 @@ def login_view(request):
   return render (request, 'login.html',{'form':form})
 
 @login_required
+def logout(request):
+    auth.logout(request)
+    return redirect ('/')
+
+@login_required
 def profile(request):
     current_user = request.user
     profile = Profile.objects.filter(user_id=current_user.id).first()
@@ -75,16 +81,11 @@ def update_profile(request,id):
     return render(request, 'edit_profile.html', {"edit_form":edit_form, 'profile':profile})
 
 @login_required
-def logout(request):
-    auth.logout(request)
-    return redirect ('/')
-
-@login_required
 def list_rooms(request):
     rooms = Room.objects.all()
     return render(request,"rooms.html", {"rooms":rooms})
 
-@login_required
+@login_required(login_url = '/login')
 def book_room(request, id):
     room = Room.objects.get(id = id)
     current_user = request.user
@@ -93,13 +94,33 @@ def book_room(request, id):
     return redirect('/room')
 # permission_classes= (IsReadOnly,)
 
-
 @login_required
 def leave_room(request, id):
     room = get_object_or_404(Room, id=id)
     request.user.profile.room = None
     request.user.profile.save()
     return redirect('/room')
+
+@login_required
+def notification(request,id):
+    user = User.objects.get(id=id)
+    form = notification_form(request.POST)
+    if request.method == "POST":
+            if form.is_valid():  
+                notification = form.save(commit=False)
+                notification.save()
+                return redirect('/')      
+    return render(request, 'notifications.html', {"form":form})
+
+
+# @login_required
+# def matron_view(request):
+#     rooms = Room.objects.all()
+#     profile = Profile.objects.all()
+#     user = authenticate()
+#     if user is not None and user.is_matron:
+#         return(request,"matron_view.html",{"rooms":rooms,"profile":profile})
+
 
 
 

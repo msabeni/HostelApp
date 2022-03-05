@@ -107,3 +107,18 @@ class Profile (models.Model) :
                 profile = Profile(user=user)
                 profile.save()
 
+class Notification(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='notification', null=True)
+    email = models.EmailField(null=True)
+    phone_number = models.CharField(max_length= 13)
+
+    def __str__(self):
+        return self.email
+
+    def save_notification(self):
+        self.save()
+
+    def delete_notification(self):
+        self.delete()
+
+

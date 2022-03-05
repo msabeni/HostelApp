@@ -2,6 +2,7 @@
 {% block content %} 
 <div class="container">
     <h2 align="center"><u>Rooms Available</u></h2><br>
+    <a class="btn btn-warning btn-sm mr-4" href="{% url 'notifications' user.id %}">GET NOTIFIED</a>
     <div class="row">
         {% for room in rooms %}
         <div class="col-sm-6">
