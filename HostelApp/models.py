@@ -122,10 +122,10 @@ class Notification(models.Model):
         self.delete()
 
 class Announcement(models.Model):
-    user = models.ForeignKey('Student',on_delete=models.CASCADE,null=True)
+    user = models.OneToOneField(User,on_delete=models.CASCADE,null=True,related_name="announcements")
     title = models.CharField(null=True,max_length=100)
     content = models.TextField(null=True)
-    image = CloudinaryField('post_image')
+    image = CloudinaryField('post_image',blank=True)
 
     def __str__(self):
         return self.title

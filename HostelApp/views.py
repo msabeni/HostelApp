@@ -101,6 +101,11 @@ def leave_room(request, id):
     return redirect('/room')
 
 @login_required
+def waiting_list(request):
+    waiting_list = Notification.objects.all()
+    return render(request, "waiting_list.html", {"waiting_list":waiting_list})
+
+@login_required
 def notification(request,id):
     user = User.objects.get(id=id)
     notification = Notification.objects.all()
@@ -114,13 +119,20 @@ def notification(request,id):
     return render(request, 'notification_form.html', {"form":form,"notification":notification})
 
 @login_required
-def waiting_list(request):
-    waiting_list = Notification.objects.all()
-    return render(request, "waiting_list.html", {"waiting_list":waiting_list})
+def upload_announcement(request,id):
+    user = User.objects.get(id=id)
+    announcements = Announcement.objects.all()
+    form = post_announcement(instance=user)
+    if request.method == "POST":
+        form = post_announcement(request.POST,request.FILES)
+        if form.is_valid():
+            announcements = form.save(commit = False)
+            announcements.save()
+            return redirect('/announcements')
+    return render(request,'post_announcement.html',{'form':form,'announcements':announcements})
 
 @login_required
 def announcements(request):
     announcements = Announcement.objects.all()
     return render(request,'announcements.html',{"announcements":announcements})
-
 

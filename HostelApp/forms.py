@@ -80,4 +80,9 @@ class notification_form(forms.ModelForm):
         model = Notification
         exclude = ['user']
 
+class post_announcement(forms.ModelForm):
+    class Meta:
+        model = Announcement
+        exclude = ['user']
+
 

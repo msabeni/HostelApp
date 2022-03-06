@@ -1,6 +1,15 @@
 {% extends 'base.html' %}
 {% block content%}
+<h1 align="center" style="font-family:'Playfair Display'"><u>ANNOUNCEMENTS</u><span class="glyphicon glyphicon-bullhorn"></span></h1><br>
 {% if user.is_authenticated and user.is_matron %}
-<a href='/post_announcement' class="btn btn-warning btn-sm mr-4">POST ANNOUNCEMENT</a>
+<a style="margin-left: 45%" href="{% url 'post_announcement' user.id %}" class="btn btn-warning btn-sm mr-4">POST ANNOUNCEMENT</a>
 {% endif %}
+{%for post in announcements%}
+<div class="container" align="center">
+    <img  height="300em" src="{{post.image.url}}">
+    <p style="font-size:2em"><strong>{{post.title}}</strong></p>
+    <p>{{post.content}}</p>
+</div>
+<hr class="announce">
+{% endfor %}
 {% endblock %}

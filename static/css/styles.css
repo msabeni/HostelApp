@@ -39,3 +39,6 @@
 .i_content{
   margin-left:-5em;
 }
+hr.announce{
+  border:0.5em solid darkolivegreen;
+}

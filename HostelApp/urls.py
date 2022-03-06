@@ -16,6 +16,7 @@ urlpatterns = [
     # path('rooms',views.matron_view , name="rooms"),
     path('get_notified/<int:id>',views.notification,name='notifications'),
     path('waiting_list',views.waiting_list,name='waiting_list'),
-    path('announcements',views.announcements,name='announcements')
+    path('announcements',views.announcements,name='announcements'),
+    path('post_announcement/<int:id>',views.upload_announcement,name="post_announcement")
 
 ]
