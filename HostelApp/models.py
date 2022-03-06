@@ -121,4 +121,22 @@ class Notification(models.Model):
     def delete_notification(self):
         self.delete()
 
+class Announcement(models.Model):
+    user = models.ForeignKey('Student',on_delete=models.CASCADE,null=True)
+    title = models.CharField(null=True,max_length=100)
+    content = models.TextField(null=True)
+    image = CloudinaryField('post_image')
+
+    def __str__(self):
+        return self.title
+    
+    def create_announcement(self):
+        self.save
+
+    def update_announcement(self):
+        self.save
+
+    def delete_announcement(self):
+        self.delete
+
 
