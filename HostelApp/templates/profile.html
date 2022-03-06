@@ -26,15 +26,18 @@
                     </p>
                     <p>Gender:{{ profile.gender }}</p>
                     <p>
+                        {% if user.is_authenticated and user.is_student %}
                         {% if profile.room %}
                         Room Occupied: {{ profile.room}}
                         {% else %}
                         <span class="text-danger">You have not booked any room!</span><br>
                         <a class="btn btn-warning btn-sm mr-4" href="/room">BOOK NOW</a>
                         {% endif %}
+                        {% else %}     
                     </p>
                     <h6>Joined on: <span class="badge rounded-pill bg-secondary text-white">
                             {{ user.date_joined }} </span></h6><br>
+                        {% endif %}
                     {% if request.user is user %}  
                     <a href="{%url 'edit_profile' user.id %}" class="btn btn-warning btn-sm">
                         Edit Profile

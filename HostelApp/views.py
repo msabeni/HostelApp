@@ -6,7 +6,8 @@ from HostelApp.forms  import *
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required
 from django.contrib import auth
-from .permissions import *
+
+
 # Create your views here.
 def index (request):
     return render(request,'index.html')
@@ -87,12 +88,10 @@ def list_rooms(request):
 
 @login_required(login_url = '/login')
 def book_room(request, id):
-    room = Room.objects.get(id = id)
-    current_user = request.user
-    current_user.profile.room = room
-    current_user.profile.save()
+    room = get_object_or_404(Room,id = id)
+    request.user.profile.room = room
+    request.user.profile.save()
     return redirect('/room')
-# permission_classes= (IsReadOnly,)
 
 @login_required
 def leave_room(request, id):
@@ -111,7 +110,7 @@ def notification(request,id):
             if form.is_valid():  
                 notification = form.save(commit=False)
                 notification.save()
-                return redirect('/waiting_list')      
+                return redirect('/')      
     return render(request, 'notification_form.html', {"form":form,"notification":notification})
 
 @login_required
@@ -119,14 +118,9 @@ def waiting_list(request):
     waiting_list = Notification.objects.all()
     return render(request, "waiting_list.html", {"waiting_list":waiting_list})
 
-# @login_required
-# def matron_view(request):
-#     rooms = Room.objects.all()
-#     profile = Profile.objects.all()
-#     user = authenticate()
-#     if user is not None and user.is_matron:
-#         return(request,"matron_view.html",{"rooms":rooms,"profile":profile})
-
-
+@login_required
+def announcements(request):
+    announcements = Announcement.objects.all()
+    return render(request,'announcements.html',{"announcements":announcements})
 
 

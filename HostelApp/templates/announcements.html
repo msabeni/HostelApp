@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content%}
+{% if user.is_authenticated and user.is_matron %}
+<a href='/post_announcement' class="btn btn-warning btn-sm mr-4">POST ANNOUNCEMENT</a>
+{% endif %}
+{% endblock %}
