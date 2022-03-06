@@ -7,10 +7,11 @@
             {% if user.is_authenticated and user.is_student %}
             <a class="btn btn-warning btn-sm mr-4" href="/room">BOOK NOW</a>
             {% elif user.is_authenticated and user.is_matron %}
-            <a class="btn btn-warning btn-sm mr-4" href="/waiting_list">VIEW WAITING LIST</a>
+            <a class="btn btn-warning btn-sm mr-4" href="/waiting_list">VIEW WAITING LIST</a><br>
             <a class="btn btn-warning btn-sm mr-4" href="/room">VIEW ROOMS</a>
             {% else %}
-            <a class="btn btn-warning btn-sm mr-4" href="/login">Login</a>
+            <a class="btn btn-warning btn-sm mr-4" href="/login">LOGIN</a>
+            <a class="btn btn-warning btn-sm mr-4" href="/signup">REGISTER</a>
             {% endif %}
         </div>
         <div class="col-md-4">

@@ -7,10 +7,10 @@
 <form method="POST" accept-charset="utf-8">
     {% csrf_token %}
     {% bootstrap_form form %}
-    <button type="submit" style="background-color:darkolivegreen;font-size:1.2em;" class="btn btn-sm btn-info">Sign Up</button>
+    <button type="submit" style="font-size:1em;" class="btn btn-warning btn-sm mr-4">SIGN UP</button>
 </form>
 Have an account? <br>
-<a class="nav-link" style="color:darkolivegreen" href="{% url 'login_view'%}" >Login Here</a>
+<a class="btn btn-warning btn-sm mr-4" style="font-size:1em;" href="{% url 'login_view'%}" >LOGIN HERE</a>
 </div>
 <br>
 {% endblock %}

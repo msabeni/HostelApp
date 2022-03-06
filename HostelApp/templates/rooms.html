@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %} 
 <div class="container">
-    <h2 align="center"><u>Rooms Available</u></h2><br>
+    <h2 style="font-family:'Playfair Display'" align="center"><u>ROOMS AVAILABLE</u></h2><br>
     {% if user.is_authenticated and user.is_student %}
-    <a class="btn btn-warning btn-sm mr-4" href="{% url 'notifications' user.id %}">GET NOTIFIED</a>
+    <a class="btn btn-warning btn-sm mr-4" style="margin-left: 45%" href="{% url 'notifications' user.id %}">GET NOTIFIED</a><br><br>
     <div class="row">
         {% for room in rooms %}
         <div class="col-sm-6">
@@ -26,23 +26,18 @@
     </div>
     {% elif user.is_authenticated and user.is_matron %}
     <div class="row">
-      <div id="rooms">
-        <div class="room_titles">
-            <p class="r_title ">Room Image</p>
-            <p class="r_title ">Room Number</p>
-            <p class="r_title">Room Occupant</p>
-        </div>
-        {%for room in rooms%}
-        <div class="room_details">
-            <p class="i_content"><img  height="200em" src="{{room.room_image.url}}"></p>
-            <p class="content">{{room.room_no}}</p>
-            <p class="content">{{room.occupant}}</p>
-
-
-        </div>
+      {% for room in rooms %}
+      <div class="col-sm-6">
+        <div class="card" style="border-style: groove;border-color: darkolivegreen;border-width: 2em;">
+          <div class="card-body">
+            <h5 class="card-title"align="center"><img  height="300em" src="{{room.room_image.url}}"></h5>
+            <p class="card-text" align="center">Room No: {{room.room_no}}</p>
+            <p class="card-text" align="center">Occupant: {{room.occupant}}</p>
+          </div>
+        </div><br>
       </div>
       {% endfor %}
-    </div>
+  </div>
     {% else %}
     <a class="btn btn-warning btn-sm mr-4" href="/login">Login</a>
     {% endif %}

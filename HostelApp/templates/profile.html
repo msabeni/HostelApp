@@ -28,7 +28,7 @@
                     <p>
                         {% if user.is_authenticated and user.is_student %}
                         {% if profile.room %}
-                        Room Occupied: {{ profile.room}}
+                        Room Occupied: {{ profile.room}}<br><br>
                         {% else %}
                         <span class="text-danger">You have not booked any room!</span><br>
                         <a class="btn btn-warning btn-sm mr-4" href="/room">BOOK NOW</a>
@@ -39,8 +39,8 @@
                             {{ user.date_joined }} </span></h6><br>
                         {% endif %}
                     {% if request.user is user %}  
-                    <a href="{%url 'edit_profile' user.id %}" class="btn btn-warning btn-sm">
-                        Edit Profile
+                    <a href="{%url 'edit_profile' user.id %}" class="btn btn-warning btn-sm mr-4">
+                        EDIT PROFILE
                     </a>
                     {% endif %}
                 </div>
