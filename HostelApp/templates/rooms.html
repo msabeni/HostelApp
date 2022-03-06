@@ -2,6 +2,7 @@
 {% block content %} 
 <div class="container">
     <h2 align="center"><u>Rooms Available</u></h2><br>
+    {% if user.is_authenticated and user.is_student %}
     <a class="btn btn-warning btn-sm mr-4" href="{% url 'notifications' user.id %}">GET NOTIFIED</a>
     <div class="row">
         {% for room in rooms %}
@@ -23,5 +24,27 @@
         </div>
         {% endfor %}
     </div>
+    {% elif user.is_authenticated and user.is_matron %}
+    <div class="row">
+      <div id="rooms">
+        <div class="room_titles">
+            <p class="r_title ">Room Image</p>
+            <p class="r_title ">Room Number</p>
+            <p class="r_title">Room Occupant</p>
+        </div>
+        {%for room in rooms%}
+        <div class="room_details">
+            <p class="i_content"><img  height="200em" src="{{room.room_image.url}}"></p>
+            <p class="content">{{room.room_no}}</p>
+            <p class="content">{{room.occupant}}</p>
+
+
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <a class="btn btn-warning btn-sm mr-4" href="/login">Login</a>
+    {% endif %}
 </div>
 {% endblock %}  

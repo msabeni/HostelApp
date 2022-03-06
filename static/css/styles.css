@@ -17,3 +17,25 @@
     font-size:1.4em ;
     margin-left: 1em;
   }
+#rooms{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    padding: 0 5%; 
+}
+.room_details, .room_titles{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    padding-bottom: 3rem;
+    margin-left: 10%;
+}
+.r_title{
+    font-size:1.4em ;
+    margin-left: 1em;
+}
+.i_content{
+  margin-left:-5em;
+}
